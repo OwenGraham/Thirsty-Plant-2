@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class App {
+    public static JFrame appWindow;
     public static final Color BG_COLOUR = new Color(171,216,226);
     public static final Color FG_COLOUR = new Color(137,221,130);
     public static final Color TEXT_COLOUR = new Color(0,0,0);
@@ -28,7 +29,7 @@ public class App {
 
     public static void main(String[] args) {
         //Making the window of rhe app
-        JFrame appWindow = AppWindowBuilder.getAppWindow();
+        appWindow = AppWindowBuilder.getAppWindow();
 
         //Making a container for all the elements of the app
         JPanel container = new JPanelBuilder()

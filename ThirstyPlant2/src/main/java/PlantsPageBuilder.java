@@ -1,3 +1,5 @@
+import utils.Reader;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -14,18 +16,10 @@ public class PlantsPageBuilder {
 
         plants = createPlants(PLANTS_FILE);
         for (Plant plant : plants){
-            ImageIcon plantIcon = new ImageIcon();
-            switch (plant.getHealth()){
-                case GOOD -> plantIcon = new ImageIcon(HEALTHY_PLANT_ICON);
-                case NORMAL -> plantIcon = new ImageIcon(UNHEALTHY_PLANT_ICON);
-                case BAD -> plantIcon = new ImageIcon(UNHEALTHY_PLANT_ICON);
-            }
-
-            CurvedPanel plantPanel = new PlantPanelBuilder()
+            CurvedPanel plantPanel = new PlantPanelBuilder(plant)
                     .setName(plant.getName())
                     .setLastWater(plant.getLastWater())
                     .setNextWater(plant.getNextWater())
-                    .setPottedPlant(plantIcon)
                     .build();
             page.add(plantPanel);
         }

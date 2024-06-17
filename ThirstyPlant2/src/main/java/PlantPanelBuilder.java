@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 public class PlantPanelBuilder {
@@ -7,10 +9,17 @@ public class PlantPanelBuilder {
     private final int PANEL_HEIGHT = 126;
     private final int ARC = 37;
     private final float FONT_SIZE = 17f;
+
+    private static final String WATERING_ICON_FILE = "src/main/resources/icons/watering-plants.png";
+
+    private Plant plant;
     private String name;
     private LocalDate lastWater;
     private int nextWater;
-    ImageIcon pottedPlant = new ImageIcon();
+
+    public PlantPanelBuilder(Plant plant) {
+        this.plant = plant;
+    }
 
     public PlantPanelBuilder setName(String name) {
         this.name = name;
@@ -27,11 +36,6 @@ public class PlantPanelBuilder {
         return this;
     }
 
-    public PlantPanelBuilder setPottedPlant(ImageIcon pottedPlant) {
-        this.pottedPlant = pottedPlant;
-        return this;
-    }
-
     public CurvedPanel build(){
         CurvedPanel plantPanel =  new CurvedPanelBuilder()
                 .setBackgroundColor(App.FG_COLOUR)
@@ -42,18 +46,29 @@ public class PlantPanelBuilder {
 
         plantPanel.setLayout(new BoxLayout(plantPanel,BoxLayout.X_AXIS));
 
-        Image pottedPlantImage = pottedPlant.getImage();
-        Image newPottedPlantImage = pottedPlantImage.getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH);
-        pottedPlant = new ImageIcon(newPottedPlantImage);
-        JLabel pottedPlantLabel = new JLabel(pottedPlant);
+        PlantHealthIcon pottedPlantLabel = new PlantHealthIcon(plant);
         plantPanel.add(pottedPlantLabel);
 
-        JLabel nameLabel = new JLabelBuilder()
-                .setFont(App.JETBRAINS_MONO.deriveFont(FONT_SIZE))
-                .setText("<html>" + String.format("%s hasn't been watered since %s.",name,lastWater) + "<br>" + String.format("%s should be watered in %d days.",name,nextWater) + "</html>")
-                .setTextColour(App.TEXT_COLOUR)
-                .build();
-        plantPanel.add(nameLabel);
+        PlantInfo plantInfo = new PlantInfo(plant);
+        plantPanel.add(plantInfo);
+
+        ImageIcon wateringCan = new ImageIcon(WATERING_ICON_FILE);
+        Image image = wateringCan.getImage();
+        Image newimg = image.getScaledInstance(85, 89, java.awt.Image.SCALE_SMOOTH);
+        wateringCan = new ImageIcon(newimg);
+        JButton water = new JButton(wateringCan);
+        water.setBackground(App.FG_COLOUR);
+        water.setBorder(null);
+        water.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        water.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Water water = new Water(name,LocalDate.now());
+                water.write();
+                plantInfo.repaint();
+                pottedPlantLabel.repaint();
+            }
+        });
+        plantPanel.add(water);
 
         return plantPanel;
     }

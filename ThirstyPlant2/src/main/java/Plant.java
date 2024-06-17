@@ -1,5 +1,6 @@
+import utils.Reader;
+
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -9,7 +10,9 @@ public class Plant {
     private final String WATERS_FILE = "src/main/resources/waters.txt";
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private Species species;
-    private LocalDate lastWater = getLastWater();
+//    private LocalDate lastWater = getLastWater();
+    private LocalDate lastWater = LocalDate.MIN;
+
     private int daysSinceWater = getDaysSinceWater();
     private Health health;
 
@@ -38,7 +41,7 @@ public class Plant {
                 lastWater = water.getDate();
             }
         }
-        return date;
+        return lastWater;
     }
 
     public int getDaysSinceWater(){
