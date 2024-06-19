@@ -1,3 +1,8 @@
+package pageelements;
+
+import objects.Plant;
+import styles.Styles;
+
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
@@ -10,8 +15,8 @@ public class PlantInfo extends JLabel {
     private int nextWater;
 
     public PlantInfo(Plant plant) {
-        setFont(App.JETBRAINS_MONO.deriveFont(FONT_SIZE));
-        setForeground(App.TEXT_COLOUR);
+        setFont(Styles.JETBRAINS_MONO.deriveFont(FONT_SIZE));
+        setForeground(Styles.TEXT_BLACK);
 
         this.plant = plant;
         name = plant.getName();

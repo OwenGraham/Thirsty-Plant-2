@@ -1,8 +1,11 @@
-import javax.swing.*;
-import java.awt.*;
-import java.beans.ConstructorProperties;
+package pageelements;
 
-public class CurvedButton extends JButton {
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class CurvedPanel extends JPanel {
     private Color bg;
     private int width;
     private int height;

@@ -1,9 +1,9 @@
-import java.awt.Color;
-import java.awt.Graphics;
+package pageelements;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
-public class CurvedPanel extends JPanel {
+public class CurvedButton extends JButton {
     private Color bg;
     private int width;
     private int height;
@@ -28,6 +28,7 @@ public class CurvedPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         g.setColor(bg);
+
         g.fillRoundRect(0, 0, width, height, arc, arc);
     }
 }

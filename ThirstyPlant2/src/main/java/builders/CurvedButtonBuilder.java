@@ -1,11 +1,14 @@
+package builders;
+
+import pageelements.CurvedButton;
+import styles.Styles;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class CurvedButtonBuilder {
     private Color backgroundColor;
-    private Color textColour = App.TEXT_COLOUR;
+    private Color textColour = Styles.TEXT_BLACK;
     private int x;
     private int y;
     private int width;
@@ -24,26 +27,22 @@ public class CurvedButtonBuilder {
         return this;
     }
 
-    public CurvedButtonBuilder
-    setX(int x) {
+    public CurvedButtonBuilder setX(int x) {
         this.x = x;
         return this;
     }
 
-    public CurvedButtonBuilder
-    setY(int y) {
+    public CurvedButtonBuilder setY(int y) {
         this.y = y;
         return this;
     }
 
-    public CurvedButtonBuilder
-    setWidth(int width) {
+    public CurvedButtonBuilder setWidth(int width) {
         this.width = width;
         return this;
     }
 
-    public CurvedButtonBuilder
-    setHeight(int height) {
+    public CurvedButtonBuilder setHeight(int height) {
         this.height = height;
         return this;
     }
@@ -61,7 +60,8 @@ public class CurvedButtonBuilder {
     public CurvedButton build() {
         CurvedButton button = new CurvedButton();
         button.setBg(backgroundColor);
-        button.setForeground(textColour);
+        button.setSize(width,height);
+        button.setLocation(x,y);
         button.setWidth(width);
         button.setHeight(height);
         button.setArc(arc);
@@ -72,7 +72,8 @@ public class CurvedButtonBuilder {
 
         JLabel label = new JLabelBuilder()
                 .setText(text)
-                .setFont(App.JETBRAINS_MONO)
+                .setFont(Styles.JETBRAINS_MONO)
+                .setTextColour(textColour)
                 .build();
         button.add(label, new GridBagConstraints());
 

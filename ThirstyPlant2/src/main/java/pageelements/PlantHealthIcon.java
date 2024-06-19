@@ -1,3 +1,7 @@
+package pageelements;
+
+import objects.Plant;
+
 import javax.swing.*;
 import java.awt.*;
 

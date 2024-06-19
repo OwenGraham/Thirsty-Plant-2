@@ -1,3 +1,7 @@
+package builders;
+
+import pageelements.CurvedPanel;
+
 import java.awt.*;
 
 public class CurvedPanelBuilder {
