@@ -9,6 +9,13 @@ public class CurvedButton extends JButton {
     private int height;
     private int arc;
 
+//    public CurvedButton(Color bg, int width, int height, int arc) {
+//        this.bg = bg;
+//        this.width = width;
+//        this.height = height;
+//        this.arc = arc;
+//    }
+
     public void setBg(Color bg) {
         this.bg = bg;
     }

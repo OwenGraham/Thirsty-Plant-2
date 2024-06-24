@@ -11,8 +11,9 @@ import java.util.ArrayList;
 
 public class SpeciesMenu extends JMenuBar {
     private static final String SPECIES_FILE = "src/main/resources/species.txt";
+    public JMenu selectSpecies;
     public SpeciesMenu() {
-        JMenu selectSpecies = new JMenu("Select species");
+        selectSpecies = new JMenu("Select species");
 
         ArrayList<Species> speciesList = SpeciesReader.readAllSpecies(SPECIES_FILE);
         for (Species species : speciesList){

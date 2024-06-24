@@ -1,5 +1,7 @@
 package pageelements;
 
+import App.App;
+import builders.CurvedButtonBuilder;
 import objects.Plant;
 import objects.Water;
 import styles.Styles;
@@ -47,5 +49,18 @@ public class PlantPanel extends CurvedPanel{
             }
         });
         add(water);
+
+        CurvedButton deleteButton = new CurvedButtonBuilder()
+                .setBackgroundColour(Styles.LIGHT_GREEN)
+                .setText("X")
+                .build();
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                plant.delete();
+                App.getInstance().plantsPage.showPlants();
+            }
+        });
+        add(deleteButton);
     }
 }

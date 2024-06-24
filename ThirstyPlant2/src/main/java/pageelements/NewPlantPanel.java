@@ -1,8 +1,10 @@
 package pageelements;
 
+import App.App;
 import builders.CurvedButtonBuilder;
 import builders.JLabelBuilder;
 import objects.Plant;
+import objects.Species;
 import styles.Styles;
 
 import javax.swing.*;
@@ -18,7 +20,6 @@ public class NewPlantPanel extends CurvedPanel {
     JLabel nameLabel;
     JTextField nameField;
     JLabel speciesLabel;
-//    JTextField speciesField;
     SpeciesMenu speciesMenu;
     CurvedButton submitButton;
 
@@ -71,13 +72,6 @@ public class NewPlantPanel extends CurvedPanel {
         speciesMenu.setVisible(false);
         add(speciesMenu);
 
-//        speciesField = new JTextField();
-//        speciesField.setSize(166,25);
-//        speciesField.setLocation(551,52);
-//        speciesField.setBorder(null);
-//        speciesLabel.setVisible(false);
-//        add(speciesField);
-
         submitButton = new CurvedButtonBuilder()
                 .setText("Plant")
                 .setX(750)
@@ -89,15 +83,16 @@ public class NewPlantPanel extends CurvedPanel {
                 .setTextColour(Styles.TEXT_WHITE)
                 .build();
         submitButton.setVisible(false);
-//        submitButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String newPlantName = nameField.getText();
-//                String newPlantSpecies = speciesField.getText();
-//                Plant newPlant = new Plant(newPlantName,newPlantSpecies);
-//                newPlant.wr
-//            }
-//        });
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String newPlantName = nameField.getText();
+                String newPlantSpecies = speciesMenu.selectSpecies.getText();
+                Plant newPlant = new Plant(newPlantName,new Species(newPlantSpecies,-1));
+                newPlant.write();
+                App.getInstance().plantsPage.showPlants();
+            }
+        });
         add(submitButton);
     }
 

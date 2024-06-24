@@ -1,3 +1,5 @@
+package App;
+
 import builders.JPanelBuilder;
 import pageelements.NavBar;
 import pageelements.NewPlantBar;
@@ -7,15 +9,37 @@ import styles.Styles;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class App {
     private static final int WINDOW_WIDTH = 1000;
     private static final int WINDOW_HEIGHT = 600;
 
+    private static App instance;
+
+    public static synchronized App getInstance() {
+        if (instance == null){
+            instance = new App();
+        }
+        return instance;
+    }
+
+    public static PlantsPage plantsPage;
+
+    public App() {
+        init();
+    }
+
     public static void main(String[] args) {
-        //Making the window of rhe app
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                App.getInstance();
+            }
+        });
+    }
+
+    private void init(){
+        //Making the window of the app
         ThirstyPlantWindow appWindow = new ThirstyPlantWindow("Thirsty objects.Plant");
 
         //Making a container for all the elements of the app
@@ -29,7 +53,7 @@ public class App {
         NavBar navbar = new NavBar();
         container.add(navbar, BorderLayout.NORTH);
 
-        PlantsPage plantsPage = new PlantsPage();
+        plantsPage = new PlantsPage();
         container.add(plantsPage);
 
         NewPlantBar newPlantBar = new NewPlantBar();

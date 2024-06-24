@@ -1,8 +1,11 @@
 package objects;
 
+import paths.Paths;
+import utils.PlantReader;
 import utils.Reader;
 import utils.Writer;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -10,13 +13,9 @@ import java.util.ArrayList;
 
 public class Plant {
     private String name;
-    private final String WATERS_FILE = "src/main/resources/waters.txt";
-    private final String PLANTS_FILE = "src/main/resources/plants.txt";
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private Species species;
     private LocalDate lastWater = LocalDate.MIN;
-
-    private int daysSinceWater = getDaysSinceWater();
     private Health health;
 
     public Plant(String name, Species species) {
@@ -24,16 +23,12 @@ public class Plant {
         this.species = species;
     }
 
-    public String getSpeciesName() {
-        return species.getName();
-    }
-
     public String getName() {
         return name;
     }
 
     public LocalDate getLastWater(){
-        ArrayList<String> records = Reader.readLines(WATERS_FILE);
+        ArrayList<String> records = Reader.readLines(Paths.WATERS);
         LocalDate date = LocalDate.MIN;
         for (String record : records){
             String[] fields = record.split(",");
@@ -67,6 +62,23 @@ public class Plant {
     }
 
     public void write(){
-        Writer.write(PLANTS_FILE,name + "," + species);
+        Writer.write(Paths.PLANTS,name + "," + species.getName());
+    }
+
+    public void write(String file){
+        Writer.write(file,name + "," + species.getName());
+    }
+
+    public void delete(){
+        for (Plant plant : PlantReader.readAllPlants(Paths.PLANTS)){
+            if (!plant.getName().equals(name)){
+                plant.write(Paths.TEMP);
+            }
+        }
+        File plantsFile = new File(Paths.PLANTS);
+        plantsFile.delete();
+        plantsFile = new File(Paths.PLANTS);
+        File temp = new File(Paths.TEMP);
+        temp.renameTo(plantsFile);
     }
 }
