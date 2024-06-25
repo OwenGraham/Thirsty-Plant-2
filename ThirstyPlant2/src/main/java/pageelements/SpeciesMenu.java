@@ -1,6 +1,7 @@
 package pageelements;
 
 import objects.Species;
+import paths.Paths;
 import utils.SpeciesReader;
 
 import javax.swing.*;
@@ -10,12 +11,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class SpeciesMenu extends JMenuBar {
-    private static final String SPECIES_FILE = "src/main/resources/species.txt";
     public JMenu selectSpecies;
     public SpeciesMenu() {
         selectSpecies = new JMenu("Select species");
 
-        ArrayList<Species> speciesList = SpeciesReader.readAllSpecies(SPECIES_FILE);
+        ArrayList<Species> speciesList = SpeciesReader.readAllSpecies(Paths.SPECIES);
         for (Species species : speciesList){
             JMenuItem speciesItem = new JMenuItem(species.getName());
             speciesItem.addActionListener(new ActionListener() {

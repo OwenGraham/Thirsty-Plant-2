@@ -1,6 +1,6 @@
 package pageelements;
 
-import App.App;
+import app.App;
 import builders.CurvedButtonBuilder;
 import objects.Plant;
 import objects.Water;

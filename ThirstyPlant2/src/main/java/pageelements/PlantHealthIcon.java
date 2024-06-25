@@ -6,10 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PlantHealthIcon extends JLabel {
-    private Plant plant;
+    private final Plant plant;
     private ImageIcon plantImageIcon;
 
-    private static final String PLANTS_FILE = "src/main/resources/plants.txt";
     private static final String HEALTHY_PLANT_ICON = "src/main/resources/icons/good plant.png";
     private static final String UNHEALTHY_PLANT_ICON = "src/main/resources/icons/bad plant.png";
 
