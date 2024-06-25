@@ -1,30 +1,41 @@
-name: Java CI with Maven
+name: Build and Commit JAR
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 22
+      - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'temurin' # or 'adopt' or 'zulu', depending on the available distributions
-          java-version: '22'
+          java-version: '22'  # Set your desired Java version
 
       - name: Build with Maven
         run: mvn clean package
+        working-directory: ./ThirstyPlant2/
 
-      - name: Upload JAR file as artifact
-        uses: actions/upload-artifact@v2
+      - name: Copy JAR file to repository
+        run: cp *.jar ./  # Adjust the path as per your Maven output directory
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions@example.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Commit changes
+        run: |
+          git add *.jar
+          git commit -m "Add generated JAR file"
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          name: my-java-app
-          path: target/*.jar
+          github_token: ${{ secrets.GITHUB_TOKEN }}
