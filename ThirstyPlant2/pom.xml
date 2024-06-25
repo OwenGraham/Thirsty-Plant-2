@@ -37,10 +37,13 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <outputDirectory>${project.basedir}/target</outputDirectory>
+                    <outputDirectory>./</outputDirectory>
                     <archive>
                         <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
                     </archive>
+                    <includes>
+                        <include>*.jar</include> <!-- Include all JARs in the project -->
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>
