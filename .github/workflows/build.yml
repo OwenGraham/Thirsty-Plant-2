@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ThirstyPlant2
-          path: ThirstyPlant2/target/*.jar
+          path: ThirstyPlant2/*.jar
