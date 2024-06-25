@@ -22,21 +22,3 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
         working-directory: ./ThirstyPlant2/
-
-      - name: Copy JAR file to repository
-        run: cp ${GITHUB_WORKSPACE}/*.jar ./
-
-      - name: Configure Git
-        run: |
-          git config --global user.email "github-actions@example.com"
-          git config --global user.name "GitHub Actions"
-
-      - name: Commit changes
-        run: |
-          git add *.jar
-          git commit -m "Add generated JAR file"
-      
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
