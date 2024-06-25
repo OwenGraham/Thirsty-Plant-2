@@ -24,7 +24,7 @@ jobs:
         working-directory: ./ThirstyPlant2/
 
       - name: Copy JAR file to repository
-        run: cp *.jar ./  # Adjust the path as per your Maven output directory
+        run: cp ${GITHUB_WORKSPACE}/*.jar ./
 
       - name: Configure Git
         run: |
