@@ -9,12 +9,10 @@ public class CurvedButton extends JButton {
     private int height;
     private int arc;
 
-//    public CurvedButton(Color bg, int width, int height, int arc) {
-//        this.bg = bg;
-//        this.width = width;
-//        this.height = height;
-//        this.arc = arc;
-//    }
+    public CurvedButton() {
+        super();
+        setContentAreaFilled(false); // To ensure the background is painted by our custom logic
+    }
 
     public void setBg(Color bg) {
         this.bg = bg;
@@ -34,8 +32,10 @@ public class CurvedButton extends JButton {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.setColor(bg);
-
-        g.fillRoundRect(0, 0, width, height, arc, arc);
+        if (bg != null) {
+            g.setColor(bg);
+            g.fillRoundRect(0, 0, width, height, arc, arc);
+        }
+        super.paintComponent(g);
     }
 }

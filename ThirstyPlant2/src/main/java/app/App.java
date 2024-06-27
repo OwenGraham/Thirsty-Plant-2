@@ -6,9 +6,11 @@ import pageelements.NewPlantBar;
 import pages.PlantsPage;
 import pages.ThirstyPlantWindow;
 import styles.Styles;
+import utils.PerenualRequests;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.http.HttpResponse;
 
 public class App {
     private static final int WINDOW_WIDTH = 1000;
