@@ -18,13 +18,12 @@ import java.util.List;
 public class PerenualRequests {
     private static final String BASE_URI = "https://perenual.com/api/";
     private static final String PATH = "species-list";
-    private static final String API_KEY = "sk-F2M0667d5c0353ecc6051";
 
     public String requestSpeciesList(String q){
         JSONParser jsonParser = new JSONParser();
 
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URI + PATH + "?key=" + API_KEY + "&q=" + q))
+                .uri(URI.create(BASE_URI + PATH + "?key=" + ConfigReader.getProperty("api.key") + "&q=" + q))
                 .build();
         HttpResponse<String> httpResponse = null;
         JSONObject jsonObject = null;
