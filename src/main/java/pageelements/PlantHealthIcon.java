@@ -9,8 +9,8 @@ public class PlantHealthIcon extends JLabel {
     private final Plant plant;
     private ImageIcon plantImageIcon;
 
-    private static final String HEALTHY_PLANT_ICON = "src/main/resources/icons/good plant.png";
-    private static final String UNHEALTHY_PLANT_ICON = "src/main/resources/icons/bad plant.png";
+    private static final String HEALTHY_PLANT_ICON = "src/main/resources/icons/good_plant.png";
+    private static final String UNHEALTHY_PLANT_ICON = "src/main/resources/icons/bad_plant.png";
 
     private static final int WIDTH = 83;
     private static final int HEIGHT = 108;
