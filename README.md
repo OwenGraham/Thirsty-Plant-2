@@ -23,7 +23,41 @@ A houseplant care app developed by Owen Graham using Java. The app allows users 
 
 ## Technologies Used
 
+- **Java**: Core language used to develop the application.
+- **Java** Swing: Utilized for creating the graphical user interface (GUI) of the app, providing a platform-independent way to implement the UI.
+- **Maven**: Build automation tool used for dependency management and project structure.
+- **Jackson**: Library used for parsing and deserializing JSON data retrieved from external sources.
+- **Perenual Plant API**: Third-party API used to obtain detailed information about plant species, enabling the app to recommend optimal watering schedules for different plants.
 
+## Features
+
+- Add and Manage Houseplants
+
+&nbsp;&nbsp;&nbsp;&nbsp;Users can enter and store information about their houseplants, including the plant's name and species.
+
+![add-plant-screenshot.png](readme-assets/add-plant-screenshot.png)
+
+- Watering Schedule Tracker
+
+&nbsp;&nbsp;&nbsp;&nbsp;Keep track of when each plant was last watered, with automatic reminders for when it's time to water them again based on species-specific needs.
+
+
+
+- Species Information Retrieval
+
+&nbsp;&nbsp;&nbsp;&nbsp;The app integrates with the Perenual Plant API to retrieve detailed species data, providing users with information on optimal watering frequency and other care recommendations.
+
+- Dynamic Watering Recommendations
+
+&nbsp;&nbsp;&nbsp;&nbsp;Using species data from the Perenual Plant API, the app calculates personalized watering schedules and notifies users when each plant requires attention.
+
+- User-Friendly Interface
+
+&nbsp;&nbsp;&nbsp;&nbsp;A simple, intuitive UI built with Java Swing makes it easy to navigate through the app, add new plants, and view plant details.
+
+- Data Persistence
+
+&nbsp;&nbsp;&nbsp;&nbsp;The app stores plant information and watering history locally, allowing users to access their data even after restarting the application.
 
 ## User Guide
 
@@ -54,3 +88,8 @@ Follow these steps to get access to the integrated [Penenual plant API](https://
 2. Run the following command to build the project into a Jar file with Maven: `mvn clean package`
 3. Start the app by running `java -cp ".\target\classes;target/lib/*" app.App`
 
+## UI Design
+
+A wireframe of the app's UI was created using Figma:
+
+![figma-full-screenshot.png](readme-assets/figma-full-screenshot.png)
