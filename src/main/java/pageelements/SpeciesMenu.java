@@ -33,7 +33,7 @@ public class SpeciesMenu extends JMenuBar {
                     System.out.println("Species data size: " + speciesData.size()); // Debugging statement
 
                     for (SpeciesData species : speciesData) {
-                        JMenuItem speciesItem = new JMenuItem(species.getCommonName());
+                        JMenuItem speciesItem = new JMenuItem(species.getScientificName().getFirst());
                         speciesItem.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
                                 textField.setText(species.getCommonName());

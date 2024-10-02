@@ -21,23 +21,20 @@ public class PerenualRequests {
     private static final String API_KEY = "sk-F2M0667d5c0353ecc6051";
 
     public String requestSpeciesList(String q){
-        HttpClient httpClient = HttpClient.newBuilder().build();
         JSONParser jsonParser = new JSONParser();
 
-        HttpRequest httpRequest = null;
-        httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URI + PATH + "?key=" + API_KEY + "&page=3&q=" + q))
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URI + PATH + "?key=" + API_KEY + "&q=" + q))
                 .build();
-
-        try {
-            HttpResponse<String> httpResponse = httpClient.send(httpRequest,HttpResponse.BodyHandlers.ofString());
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(httpResponse.body());
-            return jsonObject.get("data").toString();
+        HttpResponse<String> httpResponse = null;
+        JSONObject jsonObject = null;
+        try (HttpClient httpClient = HttpClient.newBuilder().build()) {
+            httpResponse = httpClient.send(httpRequest,HttpResponse.BodyHandlers.ofString());
+            jsonObject = (JSONObject) jsonParser.parse(httpResponse.body());
         } catch (IOException | InterruptedException | ParseException e) {
-            throw new RuntimeException(e);
-        } finally {
-            httpClient.close();
+            e.printStackTrace();
         }
+        return jsonObject.get("data").toString();
     }
 
     public List<SpeciesData> getAllSpecies(String q){
