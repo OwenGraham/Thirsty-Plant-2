@@ -1,9 +1,6 @@
 package utils;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Reader {
@@ -15,7 +12,7 @@ public class Reader {
                 lines.add(line);
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            File newFile = new File(file);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

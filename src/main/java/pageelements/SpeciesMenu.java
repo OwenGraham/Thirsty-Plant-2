@@ -1,6 +1,6 @@
 package pageelements;
 
-import objects.SpeciesData;
+import objects.Species;
 import utils.PerenualRequests;
 
 import javax.swing.*;
@@ -8,36 +8,31 @@ import java.awt.event.*;
 import java.util.List;
 
 public class SpeciesMenu extends JMenuBar {
-    PerenualRequests perenualRequests = new PerenualRequests();
-    public JMenu selectSpecies;
     private Timer timer;
+    JTextField textField;
 
     public SpeciesMenu() {
-        selectSpecies = new JMenu("Select species");
+        textField = new JTextField();
+        textField.setBorder(null);
 
-        JTextField textField = new JTextField();
         JPopupMenu suggestionsPopup = new JPopupMenu();
 
         // Delay time in milliseconds (1000 ms = 1 second)
-        int delay = 1000;
+        int delay = 500;
 
         // Create a Timer
         timer = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = textField.getText();
-                System.out.println("Timer triggered. Input: " + input); // Debugging statement
                 if (!input.isEmpty()) {
-                    List<SpeciesData> speciesData = perenualRequests.getAllSpecies(input);
+                    List<Species> speciesData = PerenualRequests.getAllSpecies(input);
                     suggestionsPopup.removeAll();
-                    System.out.println("Species data size: " + speciesData.size()); // Debugging statement
-
-                    for (SpeciesData species : speciesData) {
-                        JMenuItem speciesItem = new JMenuItem(species.getScientificName().getFirst());
+                    for (Species species : speciesData) {
+                        JMenuItem speciesItem = new JMenuItem(species.getName());
                         speciesItem.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
-                                textField.setText(species.getCommonName());
-                                selectSpecies.setText(species.getCommonName());
+                                textField.setText(species.getName());
                                 suggestionsPopup.setVisible(false);
                             }
                         });
@@ -59,7 +54,6 @@ public class SpeciesMenu extends JMenuBar {
         textField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Key released. Restarting timer."); // Debugging statement
                 timer.restart(); // Restart the timer every time a key is released
             }
         });
@@ -76,6 +70,5 @@ public class SpeciesMenu extends JMenuBar {
         });
 
         add(textField);
-        add(selectSpecies);
     }
 }

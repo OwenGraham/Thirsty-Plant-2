@@ -3,7 +3,7 @@ package utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import objects.SpeciesData;
+import objects.Species;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -19,11 +19,11 @@ public class PerenualRequests {
     private static final String BASE_URI = "https://perenual.com/api/";
     private static final String PATH = "species-list";
 
-    public String requestSpeciesList(String q){
+    public static String requestSpeciesList(String q){
         JSONParser jsonParser = new JSONParser();
 
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URI + PATH + "?key=" + ConfigReader.getProperty("api.key") + "&q=" + q))
+                .uri(URI.create(BASE_URI + PATH + "?key=" + ConfigReader.getProperty("api.key") + "&q=" + q.replaceAll(" ","%20")))
                 .build();
         HttpResponse<String> httpResponse = null;
         JSONObject jsonObject = null;
@@ -36,12 +36,16 @@ public class PerenualRequests {
         return jsonObject.get("data").toString();
     }
 
-    public List<SpeciesData> getAllSpecies(String q){
+    // Deserialize json response of list of species to list of Species objects
+    public static List<Species> getAllSpecies(String q){
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(requestSpeciesList(q), new TypeReference<List<SpeciesData>>(){});
+            String speciesListJson = requestSpeciesList(q);
+            return objectMapper.readValue(requestSpeciesList(q), new TypeReference<List<Species>>(){});
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
+
+
 }

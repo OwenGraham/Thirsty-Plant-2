@@ -6,6 +6,8 @@ import builders.JLabelBuilder;
 import objects.Plant;
 import objects.Species;
 import styles.Styles;
+import utils.PerenualRequests;
+import utils.SpeciesReader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,8 +89,14 @@ public class NewPlantPanel extends CurvedPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String newPlantName = nameField.getText();
-                String newPlantSpecies = speciesMenu.selectSpecies.getText();
-                Plant newPlant = new Plant(newPlantName,new Species(newPlantSpecies,-1));
+                String newPlantSpeciesName = speciesMenu.textField.getText();
+                Species newPlantSpecies = PerenualRequests.getAllSpecies(newPlantSpeciesName).getFirst();
+
+                if (!SpeciesReader.hasSpecies(newPlantSpeciesName)){
+                    newPlantSpecies.write();
+                }
+
+                Plant newPlant = new Plant(newPlantName,newPlantSpecies);
                 newPlant.write();
                 App.getInstance().plantsPage.showPlants();
             }

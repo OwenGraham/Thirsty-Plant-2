@@ -1,6 +1,7 @@
 package utils;
 
 import objects.Species;
+import paths.Paths;
 
 import java.util.ArrayList;
 
@@ -19,5 +20,15 @@ public class SpeciesReader {
         String speciesName = fields[0];
         int waterPeriod = Integer.parseInt(fields[1]);
         return new Species(speciesName,waterPeriod);
+    }
+
+    public static boolean hasSpecies(String name){
+        Boolean found = false;
+        for (Species species : readAllSpecies(Paths.SPECIES)){
+            if (species.getName().equals(name)){
+                found = true;
+            }
+        }
+        return found;
     }
 }
