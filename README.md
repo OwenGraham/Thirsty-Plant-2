@@ -41,7 +41,7 @@ A houseplant care app developed by Owen Graham using Java. The app allows users 
 
 &nbsp;&nbsp;&nbsp;&nbsp;Keep track of when each plant was last watered, with automatic reminders for when it's time to water them again based on species-specific needs.
 
-
+![water-plant-gif.gif](readme-assets/water-plant-gif.gif)
 
 - Species Information Retrieval
 
