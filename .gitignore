@@ -27,3 +27,7 @@ replay_pid*
 target/
 
 /src/main/resources/config.properties
+
+data/
+
+ThirstyPlant2-1.0-SNAPSHOT.jar
