@@ -1,3 +1,2 @@
-Jubilation,Dragon Tree
-Limbo,bunny ears cactus
-Owen,Monstera
+Jubilation ,Monstera deliciosa
+Limbo,Opuntia humifusa
