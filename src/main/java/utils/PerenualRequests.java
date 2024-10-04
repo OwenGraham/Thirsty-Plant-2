@@ -33,7 +33,12 @@ public class PerenualRequests {
         } catch (IOException | InterruptedException | ParseException e) {
             e.printStackTrace();
         }
-        return jsonObject.get("data").toString();
+        try {
+            return jsonObject.get("data").toString();
+        } catch (NullPointerException e) {
+            // Return empty string if API does not return plant data
+            return " ";
+        }
     }
 
     // Deserialize json response of list of species to list of Species objects

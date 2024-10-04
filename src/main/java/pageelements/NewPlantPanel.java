@@ -123,7 +123,6 @@ public class NewPlantPanel extends CurvedPanel {
         nameLabel.setVisible(true);
         nameField.setVisible(true);
         speciesLabel.setVisible(true);
-//        speciesField.setVisible(true);
         speciesMenu.setVisible(true);
         submitButton.setVisible(true);
 

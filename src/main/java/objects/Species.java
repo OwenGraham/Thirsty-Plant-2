@@ -56,7 +56,7 @@ public class Species {
         try {
             this.waterPeriod = WaterPeriod.valueOf(waterPeriodString).getDays();
         } catch (IllegalArgumentException e){
-            this.waterPeriod = 0;
+            this.waterPeriod = 7;
         }
     }
 

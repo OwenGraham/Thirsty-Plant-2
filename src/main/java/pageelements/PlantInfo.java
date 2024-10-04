@@ -22,7 +22,12 @@ public class PlantInfo extends JLabel {
         name = plant.getName();
         lastWater = plant.getLastWater();
         nextWater = plant.getNextWater();
-        setText("<html>" + String.format("%s hasn't been watered since %s.",name,lastWater) + "<br>" + String.format("%s should be watered in %d days.",name,nextWater) + "</html>");
+
+        if (lastWater.isEqual(LocalDate.MIN)){
+            setText("<html>" + String.format("%s hasn't been watered yet.",name) + "<br>" + String.format("%s should be watered if appropriate",name) + "</html>");
+        } else {
+            setText("<html>" + String.format("%s hasn't been watered since %s.", name, lastWater) + "<br>" + String.format("%s should be watered in %d days.", name, nextWater) + "</html>");
+        }
     }
 
     @Override
@@ -30,6 +35,10 @@ public class PlantInfo extends JLabel {
         super.paintComponent(g);
         lastWater = plant.getLastWater();
         nextWater = plant.getNextWater();
-        this.setText("<html>" + String.format("%s hasn't been watered since %s.",name,lastWater) + "<br>" + String.format("%s should be watered in %d days.",name,nextWater) + "</html>");
+        if (lastWater.isEqual(LocalDate.MIN)){
+            setText("<html>" + String.format("%s hasn't been watered yet.",name) + "<br>" + String.format("%s should be watered if appropriate",name) + "</html>");
+        } else {
+            setText("<html>" + String.format("%s hasn't been watered since %s.", name, lastWater) + "<br>" + String.format("%s should be watered in %d days.", name, nextWater) + "</html>");
+        }
     }
 }

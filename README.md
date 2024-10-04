@@ -47,6 +47,8 @@ A houseplant care app developed by Owen Graham using Java. The app allows users 
 
 &nbsp;&nbsp;&nbsp;&nbsp;The app integrates with the Perenual Plant API to retrieve detailed species data, providing users with information on optimal watering frequency and other care recommendations.
 
+![add-and-water.gif](readme-assets/add-and-water.gif)
+
 - Dynamic Watering Recommendations
 
 &nbsp;&nbsp;&nbsp;&nbsp;Using species data from the Perenual Plant API, the app calculates personalized watering schedules and notifies users when each plant requires attention.
